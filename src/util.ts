@@ -18,6 +18,7 @@ interface Line {
   from: Point;
   to: Point;
 }
+
 interface Config {
   precision: number;
 }
@@ -27,6 +28,7 @@ const isIntersect = (y: number, line: Line) => {
   const max = Math.max(line.from.y, line.to.y);
   return y >= min && y <= max;
 };
+
 const getIntersectionPoint = (y: number, line: Line) => {
   const directionVector = {
     x: line.to.x - line.from.x,
@@ -42,6 +44,7 @@ const getIntersectionPoint = (y: number, line: Line) => {
     y,
   };
 };
+
 const getSegments = (y: number, lines: Line[]) => {
   const intersectedLines = lines.filter((line) => isIntersect(y, line));
   const intersectionPoints = [];
@@ -73,6 +76,7 @@ const isIn2DBoundary = (
   const max = Math.max(a, b);
   return value + config.precision >= min && value - config.precision <= max;
 };
+
 const getDistance = (point: Point, line: Line) => {
   const directionVector = {
     x: line.to.x - line.from.x,
@@ -89,6 +93,7 @@ const getDistance = (point: Point, line: Line) => {
     )
   );
 };
+
 const isPointInSegment = (point: Point, segment: Line, config: Config) => {
   const isInBoundary =
     isIn2DBoundary(point.x, segment.from.x, segment.to.x, config) &&
@@ -129,10 +134,12 @@ export const isInsidePolylines = (polygonPoints: Point[], points: Point[]) => {
     polygonPoints,
     (pointA, pointB) => pointA.y > pointB.y
   )?.y;
+
   const minYPoint = getBestPoint(
     polygonPoints,
     (pointA, pointB) => pointA.y < pointB.y
   )?.y;
+  
   if (maxYPoint == null || minYPoint == null) return [];
   const precision = (maxYPoint - minYPoint) / 1000;
 

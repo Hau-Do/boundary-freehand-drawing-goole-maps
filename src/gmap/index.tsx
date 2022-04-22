@@ -3,12 +3,13 @@ import {
   Circle,
   Polygon,
   useJsApiLoader,
+  Marker,
 } from "@react-google-maps/api";
 import React, { useCallback, useState } from "react";
 import { CSSProperties } from "react";
 
 import Drawer from "../Drawer";
-import { MapCoor, MapCorner, Point } from "./types";
+import { MapCorner, Point } from "./types";
 import usePropertyFilter from "./usePropertyFilter";
 
 const MAP_HEIGHT = 500;
@@ -56,8 +57,8 @@ function MyGmap() {
   const [mapCorner, setMapCorner] = useState<MapCorner>();
   const [polyPoints, setPolyPoints] = useState<Point[]>([]);
   const { coordinatesPath, markers } = usePropertyFilter({
-    mapCorner,
     polyPoints,
+    mapCorner,
     mapPixelSize: { width: MAP_WIDTH, height: MAP_HEIGHT },
   });
 
@@ -125,15 +126,21 @@ function MyGmap() {
             />
           )}
           {markers.map((marker) => (
-            <Circle
-              key={`${marker.position.lng}_${marker.position.lat}}`}
-              radius={100}
-              center={marker.position}
-              options={{
-                fillColor: "#243c04",
-                fillOpacity: 1,
-                strokeColor: "#7f9b22",
-                strokeOpacity: 1,
+            // <Circle
+            //   key={`${marker.position.lng}_${marker.position.lat}}`}
+            //   radius={100}
+            //   center={marker.position}
+            //   options={{
+            //     fillColor: "#243c04",
+            //     fillOpacity: 1,
+            //     strokeColor: "#7f9b22",
+            //     strokeOpacity: 1,
+            //   }}
+            // />
+            <Marker 
+              position={{
+                lat: marker.position.lat,
+                lng: marker.position.lng
               }}
             />
           ))}

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import React from "react";
 import { isInsidePolylines } from "../util";
-import { getProperties } from "../service";
+import { getAllProperties } from "../service";
 import { MapCoor, MapCorner, Marker, Point } from "./types";
 interface Property {
   Coordinates: number[];
@@ -56,7 +56,7 @@ const usePropertyFilter = ({ polyPoints, mapCorner, mapPixelSize }: Props) => {
     [scaleRatio, leftTop]
   );
   useEffect(() => {
-    getProperties().then((properties) => {
+    getAllProperties().then((properties) => {
       const coordinates = getCoordinates(properties);
       setProperyCoordinates(coordinates);
     });

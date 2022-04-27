@@ -126,21 +126,15 @@ function MyGmap() {
             />
           )}
           {markers.map((marker) => (
-            // <Circle
-            //   key={`${marker.position.lng}_${marker.position.lat}}`}
-            //   radius={100}
-            //   center={marker.position}
-            //   options={{
-            //     fillColor: "#243c04",
-            //     fillOpacity: 1,
-            //     strokeColor: "#7f9b22",
-            //     strokeOpacity: 1,
-            //   }}
-            // />
-            <Marker 
-              position={{
-                lat: marker.position.lat,
-                lng: marker.position.lng
+            <Circle
+              key={`${marker.position.lng}_${marker.position.lat}}`}
+              radius={100}
+              center={marker.position}
+              options={{
+                fillColor: "#243c04",
+                fillOpacity: 1,
+                strokeColor: "#7f9b22",
+                strokeOpacity: 1,
               }}
             />
           ))}

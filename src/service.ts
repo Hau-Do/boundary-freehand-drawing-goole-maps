@@ -1,6 +1,6 @@
 import properties from "./data/properties.json";
 
-// getProperties from API
-export const getProperties = async () => {
+// getAllProperties from API
+export const getAllProperties = async () => {
   return properties;
 };
